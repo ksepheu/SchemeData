@@ -1,0 +1,26 @@
+﻿CREATE database SchemeDB;
+USE SchemeDB;
+
+CREATE TABLE Users
+(
+UserName char(20) NOT NULL,
+Pwd char(25) NOT NULL,
+userType int(2),
+UserStatus int(1),
+Msg varchar(200),
+PRIMARY KEY (UserName)
+);
+
+INSERT INTO Users(UserName,Pwd,UserType,UserStatus,Msg) VALUES('ksepheu','kenmo',2,1,'');
+INSERT INTO Users(UserName,Pwd,UserType,UserStatus,Msg) VALUES('kmasemula','shadrack',0,1,'');
+
+
+CREATE TABLE UserLog
+(
+LogID int NOT NULL AUTO_INCREMENT,
+ActiveUser char(20) NOT NULL,
+Activity  varchar(1000) NOT NULL,
+DTstamp datetime NOT NULL,
+PRIMARY KEY (LogID)
+);
+
