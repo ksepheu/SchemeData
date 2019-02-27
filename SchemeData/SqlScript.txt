@@ -6,6 +6,11 @@ CREATE TABLE Users
 UserName char(20) NOT NULL,
 Pwd char(25) NOT NULL,
 userType int(2),
+Surname char(16) NOT NULL,
+Names char(16) NOT NULL,
+IDNumber char(21) NOT NULL,
+Cellphone char(12),
+Email varchar(50),
 UserStatus int(1),
 Msg varchar(200),
 PRIMARY KEY (UserName)
@@ -13,7 +18,6 @@ PRIMARY KEY (UserName)
 
 INSERT INTO Users(UserName,Pwd,UserType,UserStatus,Msg) VALUES('ksepheu','kenmo',2,1,'');
 INSERT INTO Users(UserName,Pwd,UserType,UserStatus,Msg) VALUES('kmasemula','shadrack',0,1,'');
-
 
 CREATE TABLE UserLog
 (
@@ -23,4 +27,68 @@ Activity  varchar(1000) NOT NULL,
 DTstamp datetime NOT NULL,
 PRIMARY KEY (LogID)
 );
+
+CREATE TABLE AccountType
+(
+TypeID int(3) NOT NULL,
+Scheme char(25) NOT NULL,
+Premium int(4) NOT NULL,
+PRIMARY KEY (TypeID)
+);
+
+CREATE TABLE Accounts
+(
+AccNo int NOT NULL AUTO_INCREMENT,
+TypeID int(3) NOT NULL, --FR 
+Surname char(16) NOT NULL,
+Names char(16) NOT NULL,
+IDNumber char(21) NOT NULL,
+DateOfBirth char(15),
+TitleID int(2) NOT NULL, --FR
+Contact char(11),
+Address varchar(60),
+Cellphone char(12),
+Email varchar(50),
+Occupation varchar(50),
+PayCode int(2) NOT NULL; --FR
+Bank char(35),  --FR
+AccInfo char(25),
+BranchInfo char(25),
+RegDate datetime NOT NULL,
+ActiveUser varchar(15) NOT NULL, --FR
+PRIMARY KEY (AccNo)
+);
+
+CREATE TABLE PaymentMethod
+(
+PayCode int(2) NOT NULL,
+PayMethod char(10) NOT NULL,
+PRIMARY KEY (PayCode)
+);
+
+CREATE TABLE Beneficiaries
+(
+RecNo int NOT NULL AUTO_INCREMENT,
+AccNo int UNSIGNED NOT NULL,
+Surname char(16) NOT NULL,
+Names char(16) NOT NULL,
+IDNumber char(21) NOT NULL,
+DateOfBirth char(15),
+Relationship char(25),
+PRIMARY KEY (RecNo)
+);
+
+CREATE TABLE Title
+(
+TitleID int(2) NOT NULL,
+Disc char(10) NOT NULL,
+PRIMARY KEY (TitleID)
+);
+
+INSERT INTO Title(TitleID,Disc) VALUES(0,'Ms');
+INSERT INTO Title(TitleID,Disc) VALUES(1,'Miss');
+INSERT INTO Title(TitleID,Disc) VALUES(2,'Mrs');
+INSERT INTO Title(TitleID,Disc) VALUES(3,'Mr');
+INSERT INTO Title(TitleID,Disc) VALUES(4,'Dr');
+INSERT INTO Title(TitleID,Disc) VALUES(5,'Prof');
 
